@@ -1,7 +1,7 @@
-import { TOGGLE_TODO, ADD_TODO, SET_VISIBILITY_FILTER, VisibilityFilter } from './actions';
+import { TOGGLE_TODO, ADD_TODO, SET_VISIBILITY_FILTER, VisibilityFilters } from './actions';
 import { combineReducers } from 'redux';
 
-const { SHOW_ALL } = VisibilityFilter;
+const { SHOW_ALL } = VisibilityFilters;
 
 const todos = (state = [], action) => {
     switch(action.type){
