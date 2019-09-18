@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_TODO } from '../actions/index'
+import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO } from '../actions/index'
 
 const todos = (state = [], action) => {
     switch(action.type){
@@ -9,7 +9,9 @@ const todos = (state = [], action) => {
                     text: action.text,
                     completed: false
                 }
-            ]
+            ];
+        case REMOVE_TODO:
+            return state.filter((todo, index) => action.index !== index);
         case TOGGLE_TODO:
             return state.map((todo, index) => {
                 return index === action.index ? {
