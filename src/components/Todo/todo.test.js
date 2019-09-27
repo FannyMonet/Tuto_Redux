@@ -21,9 +21,27 @@ function setup() {
 
 describe('Todo component', () => {
     it('should render self and subcomponents', () => {
-        const { enzymeWrapper } = setup()
-    
+        const { enzymeWrapper } = setup();
+        const todoProps = enzymeWrapper.find('li').props();
+
+        expect(enzymeWrapper.find('div').hasClass('todo')).toBe(true)
         expect(enzymeWrapper.find('li').first().text()).toBe('Todo text');
-        expect(enzymeWrapper.find('li').prop('style')).toHaveProperty('textDecoration', 'line-through');
+        expect(todoProps.style).toHaveProperty('textDecoration', 'line-through');
+        expect(todoProps.style).toHaveProperty('display', 'inline');
+        expect(enzymeWrapper.find('button').text()).toBe('X');
+      });
+
+      it('should call toggleTodo if we click on the todo', () => {
+        const { enzymeWrapper, props } = setup();
+        expect(props.toggleTodo.mock.calls.length).toBe(0);
+        enzymeWrapper.find('li').simulate('click');
+        expect(props.toggleTodo.mock.calls.length).toBe(1);
+      });
+
+      it('should call removeTodo if we click on the X button', () => {
+        const { enzymeWrapper, props } = setup();
+        expect(props.removeTodo.mock.calls.length).toBe(0);
+        enzymeWrapper.find('button').simulate('click');
+        expect(props.removeTodo.mock.calls.length).toBe(1);
       });
 })
