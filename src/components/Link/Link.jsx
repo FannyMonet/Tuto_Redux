@@ -10,7 +10,7 @@ const Link = ({ onClick, active, children }) => (
         }}
     >
         {children}
-  </button>
+    </button>
 )
 
 Link.propTypes = {
