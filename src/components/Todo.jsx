@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Todo = ({toggleTodo, removeTodo, text, completed}) => (
-    <li onClick={toggleTodo}
-        style={{
-            textDecoration: completed ? 'line-through' : 'none'
-        }}>
-        {text}
+    <>
+        <li onClick={toggleTodo}
+            style={{
+                textDecoration: completed ? 'line-through' : 'none'
+            }}>
+            {text}
+        </li>
         <button onClick={removeTodo}>X</button>
-    </li>
+    </>
 );
 
 Todo.propTypes = {

@@ -1,55 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { act } from 'react-dom/test-utils';
-import Todo from './Todo';
-import { toggleTodo, removeTodo } from '../actions/index';
+import React from 'react'
+import Todo from './Todo'
+import Enzyme, { shallow } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
 
-let container;
+Enzyme.configure({ adapter: new Adapter() });
 
-beforeEach(() => {
-  container = document.createElement('div');
-  document.body.appendChild(container);
-});
+function setup() {
+    const props = {
+        toggleTodo: jest.fn(),
+        removeTodo: jest.fn(),
+        text: "Todo text",
+        completed: true,
+    }
+    const enzymeWrapper = shallow(<Todo {...props} />);
+    return {
+        props,
+        enzymeWrapper,
+    }
+}
 
-afterEach(() => {
-  document.body.removeChild(container);
-  container = null;
-});
-
-it('Todo is toggled when clicked on', () => {
-    act(() => {
-        ReactDOM.render(<Todo toggleTodo={toggleTodo} removeTodo={removeTodo} text={'coucou'} completed={false} />, container);
-    });
-    const todo = container.querySelector('li');
-    expect(todo.style.textDecoration).toBe('none');
+describe('Todo component', () => {
+    it('should render self and subcomponents', () => {
+        const { enzymeWrapper } = setup()
     
-    act(() => {
-        todo.dispatchEvent(new MouseEvent('click', {bubbles: true}));
-    });
-
-    expect(todo.style.textDecoration).toBe('line-through');
-});
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from 'react';
-// import Todo from './Todo';
-// import renderer from 'react-test-renderer';
-// import { toggleTodo, removeTodo } from '../actions/index';
-// import TodoList from './TodoList';
-
-
-// test('Todo is toggled when clicked on', () => {
-//     const todos = renderer.create(<Todo toggleTodo={toggleTodo} removeTodo={removeTodo} text={'coucou'} completed={false} />)
-//     const component = renderer.create(<TodoList todos={[todos]} toggleTodo={toggleTodo} removeTodo={removeTodo} />);
-//     todos.
-// });
+        expect(enzymeWrapper.find('li').first().text()).toBe('Todo text');
+        expect(enzymeWrapper.find('li').prop('style')).toHaveProperty('textDecoration', 'line-through');
+      });
+})
