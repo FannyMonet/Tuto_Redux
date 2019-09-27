@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO } from '../actions/index'
+import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO } from '../../actions/index'
 
 const todos = (state = [], action) => {
     switch(action.type){

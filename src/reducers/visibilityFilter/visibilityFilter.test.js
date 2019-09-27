@@ -1,5 +1,5 @@
 import visibilityFilterReducer from './visibilityFilter';
-import { VisibilityFilters, SET_VISIBILITY_FILTER } from '../actions/index';
+import { VisibilityFilters, SET_VISIBILITY_FILTER } from '../../actions/index';
 
 describe('visibility filter reducer', () => {
     it('should return the initial state', () => {
