@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Todo from '../Todo/Todo'
+import { Collection } from 'react-materialize';
+import CollectionItem from 'react-materialize/lib/CollectionItem';
 
 const TodoList = ({todos, toggleTodo, removeTodo}) => (
-    <ul>
+    <Collection>
     {
         todos.map((todo, index) => (
-            <Todo { ...todo } key={index} toggleTodo={() => toggleTodo(index)} removeTodo={() => removeTodo(index)} />
+            <CollectionItem key={index}>
+                <Todo { ...todo } toggleTodo={() => toggleTodo(index)} removeTodo={() => removeTodo(index)} />
+            </CollectionItem>
         ))
     }
-    </ul>
+    </Collection>
 )
 
 TodoList.propTypes= {

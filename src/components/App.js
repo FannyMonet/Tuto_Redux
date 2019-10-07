@@ -5,7 +5,7 @@ import Footer from './Footer/Footer'
 
 function App() {
   return (
-    <div>
+    <div className='container'>
       <AddTodo />
       <VisibleTodoList />
       <Footer />

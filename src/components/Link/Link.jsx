@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button } from 'react-materialize';
 
 const Link = ({ onClick, active, children }) => (
-    <button
+    <Button
         onClick={onClick}
         disabled={active}
         style={{
@@ -10,7 +11,7 @@ const Link = ({ onClick, active, children }) => (
         }}
     >
         {children}
-    </button>
+    </Button>
 )
 
 Link.propTypes = {

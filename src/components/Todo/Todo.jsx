@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 const Todo = ({toggleTodo, removeTodo, text, completed}) => (
     <div className="todo">
-        <li onClick={toggleTodo}
+        <div onClick={toggleTodo}
             style={{
                 textDecoration: completed ? 'line-through' : 'none',
                 display: 'inline'
             }}>
             {text}
-        </li>
-        <button onClick={removeTodo}>X</button>
+        </div>
+        <button className="secondary-content" onClick={removeTodo}>X</button>
     </div>
 );
 
